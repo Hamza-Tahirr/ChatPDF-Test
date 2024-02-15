@@ -1,0 +1,46 @@
+#root {
+  min-width: 100%;
+  /* border: 2px solid black; */
+  height: 540px;
+  /* margin: 0 auto; */
+}
+
+.pdfViewerContainer {
+  width: 45%;
+  float:left;
+  height: 540px;
+  overflow-y: hidden;
+
+
+
+}
+
+.chatInterface{
+  width: 30%;
+  height: 540px;
+  border: 2px solid hsl(197, 71%, 73%);
+  background-color:hsl(197, 71%, 73%) ;
+  opacity: 0.8;
+  border-radius: 15px;
+  float:right;
+  overflow-y: hidden;
+
+}
+
+.pdfUploadContainer{
+  width: 23%;
+  height: 540px;
+  border: 2px solid hsl(197, 71%, 73%);
+  background-color:hsl(197, 71%, 73%) ;
+  opacity: 0.8;
+  border-radius: 15px;
+  float:left;
+  overflow-y: hidden;
+}
+/* Global Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
