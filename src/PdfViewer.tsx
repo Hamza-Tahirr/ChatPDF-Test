@@ -88,19 +88,21 @@ function PdfViewer({ onTextSelect }) {
                     type="button"
                     disabled={pageNumber <= 1}
                     onClick={previousPage}
-                    className="ml-2 px-4 py-2 bg-gray-300 rounded-md text-sm text-gray-600"
-                >
+                    className="ml-2 px-4 py-2 bg-blue-500 rounded-md text-sm text-white disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
+                    >
                     Previous
                 </button>
                 <button
                     type="button"
                     disabled={pageNumber >= numPages}
                     onClick={nextPage}
-                    className="ml-2 px-4 py-2 bg-gray-300 rounded-md text-sm text-gray-600"
-                >
+                    className="ml-10 px-4 py-2 bg-blue-500 rounded-md text-sm text-white disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed"
+>
                     Next
                 </button>
+                
             </div>
+
 
             <div className='DisplayPDF'>
                 {options && (
@@ -108,8 +110,8 @@ function PdfViewer({ onTextSelect }) {
                         <button
                             type="button"
                             onClick={handleTextSummarisation}
-                            className="px-4 py-2 bg-gray-300 rounded-md text-sm text-gray-600"
-                        >
+                            className="px-4 py-2 bg-blue-500 rounded-md text-sm text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+>
                             Summarize 🪄
                         </button>
                     </div>
