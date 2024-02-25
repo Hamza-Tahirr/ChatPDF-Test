@@ -1,7 +1,6 @@
 import { pdfjs, Document, Page } from 'react-pdf';
 import { useState ,useCallback,useEffect} from 'react';
 import File from '.\\2210.07544.pdf'
-import './PdfViewer.css'
 import "react-pdf/dist/esm/Page/AnnotationLayer.css"
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 

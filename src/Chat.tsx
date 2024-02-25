@@ -1,22 +1,18 @@
-import React, { useState,useEffect } from 'react';
-import './PdfViewer.css'
+import React, { useState, useEffect } from 'react';
 
-const Chat = ({selectedText}) => {
-    // State to store the input value
+const Chat = ({ selectedText }) => {
   const [inputValue, setInputValue] = useState('');
-  const [messages, setMessage] = useState([]);
+  const [messages, setMessages] = useState([]);
 
-  // Handler function to update state based on user input
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
 
   const handleSendMessage = () => {
-    setMessage([...messages,inputValue])
-    setInputValue(''); // Clear the input field after sending
+    setMessages([...messages, inputValue]);
+    setInputValue('');
   };
 
-  // Handle "Enter" key in the input field to send message
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       handleSendMessage();
@@ -25,33 +21,32 @@ const Chat = ({selectedText}) => {
 
   useEffect(() => {
     if (selectedText) {
-      setMessage([...messages,selectedText]);
+      setMessages([...messages, selectedText]);
     }
-  }, [selectedText]); // This effect depends on changes to selectedText
+  }, [selectedText]);
 
   return (
-    <div className="chat">
-
-    {
-        messages.map((message) => (
-            <div className="messages">
-                {message}
-            </div>
-      ))
-    }
-      <div className='chat_input'>
-      <button onClick={handleSendMessage}>
-            <center><span>✈️</span></center>
+    <div className="bg-gray-200 p-4 h-screen overflow-y-scroll">
+      {messages.map((message, index) => (
+        <div key={index} className="message bg-white p-2 rounded-md shadow-md mb-2">
+          {message}
+        </div>
+      ))}
+      <div className="flex items-center mt-4">
+        <button
+          onClick={handleSendMessage}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          <span role="img" aria-label="send">✈️</span>
         </button>
         <input
-
-            type="text"
-            value={inputValue} // Bind the input value to the component's state
-            onChange={handleChange} // Update state when the input changes
-            onKeyPress={handleKeyPress}
-            placeholder="Type something..."
+          type="text"
+          value={inputValue}
+          onChange={handleChange}
+          onKeyPress={handleKeyPress}
+          placeholder="Type something..."
+          className="ml-4 px-4 py-2 bg-white border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
         />
-        
       </div>
     </div>
   );
