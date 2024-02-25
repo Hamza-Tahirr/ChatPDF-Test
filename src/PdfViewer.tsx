@@ -81,9 +81,10 @@ function PdfViewer({ onTextSelect }) {
     return (
         <div className='pdfviewer bg-gray-100 p-4 rounded-lg'>
             <div className='pageCount mb-4'>
-                <p className="text-sm text-gray-600">
-                    Page {pageNumber || (numPages ? 1 : '--')} of {numPages || '--'}
-                </p>
+            <p className="text-sm text-gray-600">
+    Page <span className="font-semibold">{pageNumber || (numPages ? 1 : '--')}</span> of <span className="font-semibold">{numPages || '--'}</span>
+</p>
+
                 <button
                     type="button"
                     disabled={pageNumber <= 1}
@@ -110,9 +111,9 @@ function PdfViewer({ onTextSelect }) {
                         <button
                             type="button"
                             onClick={handleTextSummarisation}
-                            className="px-4 py-2 bg-blue-500 rounded-md text-sm text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                            className="ml-10 px-4 py-2 bg-blue-500 rounded-md text-sm text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
 >
-                            Summarize 🪄
+                            Summarize Text
                         </button>
                     </div>
                 )}
