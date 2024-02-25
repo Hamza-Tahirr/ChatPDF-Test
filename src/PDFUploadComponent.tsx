@@ -19,12 +19,12 @@ const PDFUploadComponent = ({ onPDFUpload }) => {
   });
 
   return (
-    <div {...getRootProps()} style={{
-      border: '2px dashed #007bff',
-      padding: '20px',
-      textAlign: 'center',
-      color: isDragActive ? '#007bff' : 'inherit',
-    }}>
+    <div
+      {...getRootProps()}
+      className={`border-2 border-dashed border-black p-8 text-center transition-colors ${
+        isDragActive ? 'border-blue-700 text-blue-700' : 'border-gray-300 text-gray-700'
+      }`}
+    >
       <input {...getInputProps()} />
       {
         isDragActive ?

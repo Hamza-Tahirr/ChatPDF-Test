@@ -50,7 +50,7 @@ const Chat = ({ selectedText }) => {
           onClick={handleSendMessage}
           className="ml-2 bg-blue-500 hover:bg-blue-600 text-white py-1 px-4 rounded-md focus:outline-none"
         >
-          ✈️
+          Send
         </button>
       </div>
     </div>
