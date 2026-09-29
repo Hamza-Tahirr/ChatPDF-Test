@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, type ChangeEvent, type KeyboardEvent } from 'react';
 
-const Chat = ({ selectedText }) => {
-  // State to store the input value
+type ChatProps = {
+  selectedText: string;
+};
+
+const Chat = ({ selectedText }: ChatProps) => {
   const [inputValue, setInputValue] = useState('');
-  const [messages, setMessage] = useState([]);
+  const [messages, setMessages] = useState<string[]>([]);
 
-  // Handler function to update state based on user input
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
 
   const handleSendMessage = () => {
-    setMessage([...messages, inputValue]);
-    setInputValue(''); // Clear the input field after sending
+    const text = inputValue.trim();
+    if (!text) return;
+    setMessages((prev) => [...prev, text]);
+    setInputValue('');
   };
 
-  // Handle "Enter" key in the input field to send message
-  const handleKeyPress = (event) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       handleSendMessage();
     }
@@ -24,9 +27,9 @@ const Chat = ({ selectedText }) => {
 
   useEffect(() => {
     if (selectedText) {
-      setMessage([...messages, selectedText]);
+      setMessages((prev) => [...prev, selectedText]);
     }
-  }, [selectedText]); // This effect depends on changes to selectedText
+  }, [selectedText]);
 
   return (
     <div className="chat h-full flex flex-col">
@@ -40,9 +43,9 @@ const Chat = ({ selectedText }) => {
       <div className="chat_input p-2 flex justify-between border-t border-gray-300">
         <input
           type="text"
-          value={inputValue} // Bind the input value to the component's state
-          onChange={handleChange} // Update state when the input changes
-          onKeyPress={handleKeyPress}
+          value={inputValue}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
           placeholder="Type something..."
           className="w-full py-1 px-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
         />

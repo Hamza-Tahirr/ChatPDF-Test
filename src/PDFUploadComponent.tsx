@@ -1,21 +1,23 @@
-import React from 'react';
+import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 
-const PDFUploadComponent = ({ onPDFUpload }) => {
-  const onDrop = React.useCallback((acceptedFiles) => {
-    // Filter for PDF files
-    const pdfFiles = acceptedFiles.filter(file => file.type === 'application/pdf');
+type PDFUploadProps = {
+  onPDFUpload: (file: File) => void;
+};
+
+const PDFUploadComponent = ({ onPDFUpload }: PDFUploadProps) => {
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    const pdfFiles = acceptedFiles.filter((file) => file.type === 'application/pdf');
     if (pdfFiles.length > 0) {
-      // Assuming you want to handle the first PDF file
       onPDFUpload(pdfFiles[0]);
     } else {
-      alert("No PDF files detected.");
+      alert('No PDF files detected.');
     }
   }, [onPDFUpload]);
 
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: 'application/pdf',
+    accept: { 'application/pdf': ['.pdf'] },
   });
 
   return (

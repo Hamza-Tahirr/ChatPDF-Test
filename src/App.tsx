@@ -1,15 +1,12 @@
-import PdfViewer from './PdfViewer';
 import { useState } from 'react';
+import PdfViewer from './PdfViewer';
 import Chat from './Chat';
 import PDFUploadComponent from './PDFUploadComponent';
+import samplePdf from './2210.07544.pdf';
 
 function App() {
   const [selectedText, setSelectedText] = useState('');
-
-  const handlePDFUpload = (file) => {
-    console.log('Uploaded PDF:', file.name);
-    // Further handling here (e.g., prepare for upload to a server)
-  };
+  const [pdfFile, setPdfFile] = useState<File | string>(samplePdf);
 
   return (
     <div className="flex w-screen min-h-screen bg-slate-600">
@@ -19,13 +16,13 @@ function App() {
             <h1 className="mr-3 text-5xl font-semibold">ChatPDF</h1>
           </div>
           <div className='sticky bottom-0 inset-x-0 px-2 py-4 opacity-0 animate-fade-in'>
-            <PDFUploadComponent onPDFUpload={handlePDFUpload} />
+            <PDFUploadComponent onPDFUpload={setPdfFile} />
           </div>
         </div>
       </div>
       <div className="w-3/6 p-4 max-h-screen">
         <div className="w-full h-full border-2 border-gray-300 bg-gray-100 bg-opacity-80 rounded-lg overflow-y-auto opacity-0 animate-fade-in">
-          <PdfViewer onTextSelect={setSelectedText} />
+          <PdfViewer file={pdfFile} onTextSelect={setSelectedText} />
         </div>
       </div>
       <div className="w-1/4 p-4 max-h-screen">
